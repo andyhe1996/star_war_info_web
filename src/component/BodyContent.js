@@ -24,7 +24,7 @@ function BodyContent() {
                 detailURLs: {
                     characterURLs: result.characters,
                     planetURLs: result.planets,
-                    specieURLs: result.species,
+                    speciesURLs: result.species,
                     starshipURLs: result.starships,
                     vehicleURLs: result.vehicles,
                 },
