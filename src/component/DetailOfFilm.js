@@ -33,13 +33,12 @@ function DetailOfFilm({detailURLs}) {
         }
         else {
             // console.log(detailURLs.characterURLs)
-            const charactersDetail = [];
-            const charactersDetailRequest = detailURLs.characterURLs.map((characterURL, index) => {
-                return axios.get(characterURL).then(response => {
-                    console.log(response)
+
+            bulkGet(detailURLs.characterURLs).then((characterResponses) => {
+                setCharacters(characterResponses.map((response) => {
                     const characterData = response.data;
-                    const character = {
-                        id: index,
+                    return ({
+                        id: response.id,
                         name: characterData.name,
                         gender: characterData.gender,
                         height: characterData.height,
@@ -48,18 +47,29 @@ function DetailOfFilm({detailURLs}) {
                         skin_color: characterData.skin_color,
                         hair_color: characterData.hair_color,
                         eye_color: characterData.eye_color,
-                    };
-                    charactersDetail.push(character);
-                });
-                
-            });
-            Promise.all(charactersDetailRequest).then(() => {
-                charactersDetail.sort((a, b) => {
-                    return a.id - b.id;
-                })
-                setCharacters(charactersDetail)
-            });
+                    });
+                }));
+        });
         }
+    }
+
+    function bulkGet(URLs) {
+        const responses = [];
+        const requests = URLs.map((thisURL, index) => {
+            return axios.get(thisURL).then(response => {
+                console.log(response);
+                responses.push({
+                    id:     index,
+                    data:   response.data,
+                });
+            });    
+        });
+        return Promise.all(requests).then(() => {
+            responses.sort((a, b) => {
+                return a.id - b.id;
+            })
+            return responses;
+        });
     }
 
     return (
@@ -73,7 +83,7 @@ function DetailOfFilm({detailURLs}) {
                 )
             })}
         </div>
-    )
+    );
 }
 
 export default DetailOfFilm
