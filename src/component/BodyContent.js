@@ -17,6 +17,10 @@ function BodyContent() {
         setFilms(response.data["results"].map(result => {
             const film = {
                 title: result.title,
+                releaseDate: result.release_date,
+                description: result.opening_crawl,
+                director: result.director,
+                producer: result.producer,
                 detailURLs: {
                     characterURLs: result.characters,
                     planetURLs: result.planets,
@@ -31,13 +35,16 @@ function BodyContent() {
 
     return (
         <div className="section">
-            <p>Grab Films Now</p>
             {console.log("in return films")}
             {console.log(films)}
             {films && films.map((film, index) => {
                 return (
                 <div key={index} className="film">
                     <p>{film.title}</p>
+                    <p>{film.releaseDate}</p>
+                    <p>{film.description}</p>
+                    <p>{film.director}</p>
+                    <p>{film.producer}</p>
                     <DetailOfFilm
                     detailURLs={film.detailURLs} />
                     <p>----------------------------------------</p>

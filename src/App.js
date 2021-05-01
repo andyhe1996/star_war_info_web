@@ -5,7 +5,7 @@ import BodyContent from './component/BodyContent'
 function App() {
   return (
     <div className="App">
-      <h1>Hello World!!!!!!</h1>
+      <h1>Star War Info Project</h1>
       <BodyContent />
     </div>
   );
