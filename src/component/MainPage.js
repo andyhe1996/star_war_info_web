@@ -49,7 +49,7 @@ function MainPage() {
                         <div class="row">
                             <div class="col-sm-8">
                                 <div key={index} className="film">
-                                    <h3>{film.title}</h3>
+                                    <h2>{film.title}</h2>
                                     <b>Release Date: </b><text>{film.releaseDate}<br/></text>
                                     <b>Description: </b><text>{film.description}<br/></text>
                                     <b>Director: </b><text>{film.director}<br/></text>
