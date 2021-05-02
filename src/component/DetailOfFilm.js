@@ -203,18 +203,26 @@ function DetailOfFilm({detailURLs}) {
         });
     }
 
+    function buttonTextChange() {
+        if (isOpen) {
+            return "Close Details";
+        } else {
+            return "More Details";
+        }
+    }
+
     return (
         <div className="section">
-            <Button type="button" class="btn btn-secondary" onClick={() => getMoreDetails()}>More Details</Button>
+            <Button type="button" class="btn btn-secondary" onClick={() => getMoreDetails()}>{buttonTextChange()}</Button>
             <div class="row">
                 <div class="col-sm-4">
-                    <Characters charactersData={characters}/>
+                    <Characters charactersData={characters} isOpen={isOpen}/>
                 </div>
                 <div class="col-sm-4">
-                    <Characters charactersData={characters}/>
+                    <Characters charactersData={characters} isOpen={isOpen}/>
                 </div>
                 <div class="col-sm-4">
-                    <Characters charactersData={characters}/>
+                    <Characters charactersData={characters} isOpen={isOpen}/>
                 </div>
             </div>
         </div>

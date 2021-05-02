@@ -15,10 +15,18 @@ import Card from 'react-bootstrap/Card';
 //     eye_color,
 // }
 
-function Characters({charactersData}) {
+function Characters({charactersData=[], isOpen=false}) {
+    function displayTitle() {
+        if(isOpen){
+            return (
+            <h4>Characters</h4>
+            );
+        }
+        return
+    }
     return (
         <div className="characters">
-            <h4>Characters</h4>
+            {displayTitle()}
             <Accordion defaultActiveKey="0">
                 {charactersData && charactersData.map((character, index) => {
                     return (
