@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import BodyContent from './component/BodyContent'
+import MainPage from './component/MainPage'
 
 
 function App() {
   return (
     <div className="App">
       <h1>Star War Info Project</h1>
-      <BodyContent />
+      <MainPage />
     </div>
   );
 }

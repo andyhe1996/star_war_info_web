@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import {BrowserRouter as Router, Switch, Route, Link, useParams} from "react-router-dom";
 import axios from 'axios';
 import DetailOfFilm from './DetailOfFilm'
 
-function BodyContent() {
+function MainPage() {
     const [films, setFilms] = useState([]);
     const URL = 'https://swapi.dev/api/'
 
@@ -39,20 +40,19 @@ function BodyContent() {
             {console.log(films)}
             {films && films.map((film, index) => {
                 return (
-                <div key={index} className="film">
-                    <p>{film.title}</p>
-                    <p>{film.releaseDate}</p>
-                    <p>{film.description}</p>
-                    <p>{film.director}</p>
-                    <p>{film.producer}</p>
-                    <DetailOfFilm
-                    detailURLs={film.detailURLs} />
-                    <p>----------------------------------------</p>
-                </div>
+                    <div key={index} className="film">
+                        <p>{film.title}</p>
+                        <p>{film.releaseDate}</p>
+                        <p>{film.description}</p>
+                        <p>{film.director}</p>
+                        <p>{film.producer}</p>
+                        <DetailOfFilm detailURLs={film.detailURLs}/>
+                        <p>----------------------------------------</p>
+                    </div>
                 );
             })}
         </div>
     );
 }
 
-export default BodyContent
+export default MainPage
