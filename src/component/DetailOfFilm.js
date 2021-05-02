@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
 
 function DetailOfFilm({detailURLs}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -203,7 +204,7 @@ function DetailOfFilm({detailURLs}) {
 
     return (
         <div className="section">
-            <button onClick={() => getMoreDetails()}>More Details</button>
+            <Button type="button" class="btn btn-secondary" onClick={() => getMoreDetails()}>More Details</Button>
             {characters && characters.map((character, index) => {
                 return (
                 <div key={index} className="character">

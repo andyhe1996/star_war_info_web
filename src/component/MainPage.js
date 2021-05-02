@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Switch, Route, Link, useParams} from "react-router-dom";
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Toast from 'react-bootstrap/Toast';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 import DetailOfFilm from './DetailOfFilm'
 
@@ -40,15 +44,25 @@ function MainPage() {
             {console.log(films)}
             {films && films.map((film, index) => {
                 return (
-                    <div key={index} className="film">
-                        <p>{film.title}</p>
-                        <p>{film.releaseDate}</p>
-                        <p>{film.description}</p>
-                        <p>{film.director}</p>
-                        <p>{film.producer}</p>
+                    <Container className="p-3 my-3 bg-dark text-white">
+                        <Jumbotron>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div key={index} className="film">
+                                    <h3>{film.title}</h3>
+                                    <b>Release Date: </b><text>{film.releaseDate}<br/></text>
+                                    <b>Description: </b><text>{film.description}<br/></text>
+                                    <b>Director: </b><text>{film.director}<br/></text>
+                                    <b>Producer: </b><text>{film.producer}<br/></text> 
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <p>leave space here</p>
+                            </div>
+                        </div>
                         <DetailOfFilm detailURLs={film.detailURLs}/>
-                        <p>----------------------------------------</p>
-                    </div>
+                        </Jumbotron>
+                    </Container>
                 );
             })}
         </div>
