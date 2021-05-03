@@ -17,20 +17,20 @@ function CharactersPage() {
             const results = await getAllPages(allCharacters);
             setCharacters(results.map(result => {
                 const character = {
-                    name: result.name,
-                    gender: result.gender,
-                    birth_year: result.birth_year,
-                    height: result.height,
-                    mass: result.mass,
-                    skin_color: result.skin_color,
-                    hair_color: result.hair_color,
-                    eye_color: result.eye_color,                    
+                    name:               result.name,
+                    gender:             result.gender,
+                    birth_year:         result.birth_year,
+                    height:             result.height,
+                    mass:               result.mass,
+                    skin_color:         result.skin_color,
+                    hair_color:         result.hair_color,
+                    eye_color:          result.eye_color,                    
                     detailURLs: {
-                        filmURLs:   result.films,
-                        planetURLs: result.homeworld,
-                        speciesURLs: result.species,
-                        starshipURLs: result.starships,
-                        vehicleURLs: result.vehicles,
+                        filmURLs:       result.films,
+                        planetURLs:     result.homeworld,
+                        speciesURLs:    result.species,
+                        starshipURLs:   result.starships,
+                        vehicleURLs:    result.vehicles,
                     },
                 }
                 return character;

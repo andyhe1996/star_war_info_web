@@ -59,12 +59,12 @@ function getFilms(filmURLs, setFilms) {
             setFilms(filmResponses.map((response) => {
                 const filmData = response.data;
                 return ({
-                    id: response.id,
-                    title: filmData.title,
-                    releaseDate: filmData.release_date,
-                    description: filmData.opening_crawl,
-                    director: filmData.director,
-                    producer: filmData.producer,
+                    id:             response.id,
+                    title:          filmData.title,
+                    releaseDate:    filmData.release_date,
+                    description:    filmData.opening_crawl,
+                    director:       filmData.director,
+                    producer:       filmData.producer,
                 });
             }));
         });
@@ -85,15 +85,15 @@ function getCharacters(characterURLs, setCharacters) {
             setCharacters(characterResponses.map((response) => {
                 const characterData = response.data;
                 return ({
-                    id: response.id,
-                    name: characterData.name,
-                    gender: characterData.gender,
-                    height: characterData.height,
-                    mass: characterData.mass,
+                    id:         response.id,
+                    name:       characterData.name,
+                    gender:     characterData.gender,
+                    height:     characterData.height,
+                    mass:       characterData.mass,
                     birth_year: characterData.birth_year,
                     skin_color: characterData.skin_color,
                     hair_color: characterData.hair_color,
-                    eye_color: characterData.eye_color,
+                    eye_color:  characterData.eye_color,
                 });
             }));
         });
@@ -114,16 +114,16 @@ function getPlanets(planetURLs, setPlanets) {
             setPlanets(planetResponses.map((response) => {
                 const planetData = response.data;
                 return ({
-                    id: response.id,
-                    name: planetData.name,
-                    diameter: planetData.diameter,
-                    rotation_period: planetData.rotation_period,
-                    orbital_period: planetData.orbital_period,
-                    gravity: planetData.gravity,
-                    population: planetData.population,
-                    climate: planetData.climate,
-                    terrain: planetData.terrain,
-                    surface_water: planetData.surface_water,
+                    id:                 response.id,
+                    name:               planetData.name,
+                    diameter:           planetData.diameter,
+                    rotation_period:    planetData.rotation_period,
+                    orbital_period:     planetData.orbital_period,
+                    gravity:            planetData.gravity,
+                    population:         planetData.population,
+                    climate:            planetData.climate,
+                    terrain:            planetData.terrain,
+                    surface_water:      planetData.surface_water,
                 });
             }));
         });
@@ -144,16 +144,16 @@ function getSpecies(speciesURLs, setSpecies) {
             setSpecies(speciesResponses.map((response) => {
                 const speciesData = response.data;
                 return ({
-                    id: response.id,
-                    name: speciesData.name,
-                    classification: speciesData.classification,
-                    designation: speciesData.designation,
-                    average_height: speciesData.average_height,
-                    average_lifespan: speciesData.average_lifespan,
-                    skin_colors: speciesData.skin_colors,
-                    hair_colors: speciesData.hair_colors,
-                    eye_colors: speciesData.eye_colors,
-                    language: speciesData.language,
+                    id:                 response.id,
+                    name:               speciesData.name,
+                    classification:     speciesData.classification,
+                    designation:        speciesData.designation,
+                    average_height:     speciesData.average_height,
+                    average_lifespan:   speciesData.average_lifespan,
+                    skin_colors:        speciesData.skin_colors,
+                    hair_colors:        speciesData.hair_colors,
+                    eye_colors:         speciesData.eye_colors,
+                    language:           speciesData.language,
                 });
             }));
         });
@@ -174,20 +174,20 @@ function getStarships(starshipURLs, setStarships) {
             setStarships(starshipResponses.map((response) => {
                 const starshipData = response.data;
                 return ({
-                    id: response.id,
-                    name: starshipData.name,
-                    model: starshipData.model,
-                    starship_class: starshipData.starship_class,
-                    manufacturer: starshipData.manufacturer,
-                    cost: starshipData.cost_in_credits,
-                    length: starshipData.length,
-                    minimum_crew: starshipData.crew,
-                    maximum_passengers: starshipData.passengers,
+                    id:                     response.id,
+                    name:                   starshipData.name,
+                    model:                  starshipData.model,
+                    starship_class:         starshipData.starship_class,
+                    manufacturer:           starshipData.manufacturer,
+                    cost:                   starshipData.cost_in_credits,
+                    length:                 starshipData.length,
+                    minimum_crew:           starshipData.crew,
+                    maximum_passengers:     starshipData.passengers,
                     max_atmosphering_speed: starshipData.max_atmosphering_speed,
-                    hyperdrive_rating: starshipData.hyperdrive_rating,
-                    MGLT: starshipData.MGLT,
-                    cargo_capacity: starshipData.cargo_capacity,
-                    supply_capacity: starshipData.consumables,
+                    hyperdrive_rating:      starshipData.hyperdrive_rating,
+                    MGLT:                   starshipData.MGLT,
+                    cargo_capacity:         starshipData.cargo_capacity,
+                    supply_capacity:        starshipData.consumables,
                 });
             }));
         });
@@ -208,18 +208,18 @@ function getVehicles(vechicleURLs, setVehicles) {
             setVehicles(vehicleResponses.map((response) => {
                 const vehicleData = response.data;
                 return ({
-                    id: response.id,
-                    name: vehicleData.name,
-                    model: vehicleData.model,
-                    vehicle_class: vehicleData.vehicle_class,
-                    manufacturer: vehicleData.manufacturer,
-                    cost: vehicleData.cost_in_credits,
-                    length: vehicleData.length,
-                    minimum_crew: vehicleData.crew,
-                    maximum_passengers: vehicleData.passengers,
+                    id:                     response.id,
+                    name:                   vehicleData.name,
+                    model:                  vehicleData.model,
+                    vehicle_class:          vehicleData.vehicle_class,
+                    manufacturer:           vehicleData.manufacturer,
+                    cost:                   vehicleData.cost_in_credits,
+                    length:                 vehicleData.length,
+                    minimum_crew:           vehicleData.crew,
+                    maximum_passengers:     vehicleData.passengers,
                     max_atmosphering_speed: vehicleData.max_atmosphering_speed,
-                    cargo_capacity: vehicleData.cargo_capacity,
-                    supply_capacity: vehicleData.consumables,
+                    cargo_capacity:         vehicleData.cargo_capacity,
+                    supply_capacity:        vehicleData.consumables,
                 });
             }));
         });

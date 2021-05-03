@@ -17,22 +17,22 @@ function StarshipsPage() {
             const results = await getAllPages(allStarships);
             setStarships(results.map(result => {
                 const starship = {
-                    name: result.name,
-                    model: result.model,
-                    starship_class: result.starship_class,
-                    manufacturer: result.manufacturer,
-                    cost: result.cost_in_credits,
-                    length: result.length,
-                    minimum_crew: result.crew,
-                    maximum_passengers: result.passengers,
+                    name:                   result.name,
+                    model:                  result.model,
+                    starship_class:         result.starship_class,
+                    manufacturer:           result.manufacturer,
+                    cost:                   result.cost_in_credits,
+                    length:                 result.length,
+                    minimum_crew:           result.crew,
+                    maximum_passengers:     result.passengers,
                     max_atmosphering_speed: result.max_atmosphering_speed,
-                    hyperdrive_rating: result.hyperdrive_rating,
-                    MGLT: result.MGLT,
-                    cargo_capacity: result.cargo_capacity,
-                    supply_capacity: result.consumables,          
+                    hyperdrive_rating:      result.hyperdrive_rating,
+                    MGLT:                   result.MGLT,
+                    cargo_capacity:         result.cargo_capacity,
+                    supply_capacity:        result.consumables,          
                     detailURLs: {
-                        filmURLs:       result.films,
-                        characterURLs:  result.pilots,
+                        filmURLs:           result.films,
+                        characterURLs:      result.pilots,
                     },
                 }
                 return starship;

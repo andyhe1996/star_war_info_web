@@ -17,18 +17,18 @@ function PlanetsPage() {
             const results = await getAllPages(allPlanets);
             setPlanets(results.map(result => {
                 const planet = {
-                    name: result.name,
-                    diameter: result.diameter,
-                    rotation_period: result.rotation_period,
-                    orbital_period: result.orbital_period,
-                    gravity: result.gravity,
-                    population: result.population,
-                    climate: result.climate,
-                    terrain: result.terrain,
-                    surface_water: result.surface_water,           
+                    name:               result.name,
+                    diameter:           result.diameter,
+                    rotation_period:    result.rotation_period,
+                    orbital_period:     result.orbital_period,
+                    gravity:            result.gravity,
+                    population:         result.population,
+                    climate:            result.climate,
+                    terrain:            result.terrain,
+                    surface_water:      result.surface_water,           
                     detailURLs: {
-                        filmURLs:   result.films,
-                        characterURLs: result.residents,
+                        filmURLs:       result.films,
+                        characterURLs:  result.residents,
                     },
                 }
                 return planet;

@@ -17,20 +17,20 @@ function VehiclesPage() {
             const results = await getAllPages(allVehicles);
             setVehicles(results.map(result => {
                 const vehicle = {
-                    name: result.name,
-                    model: result.model,
-                    vehicle_class: result.vehicle_class,
-                    manufacturer: result.manufacturer,
-                    cost: result.cost_in_credits,
-                    length: result.length,
-                    minimum_crew: result.crew,
-                    maximum_passengers: result.passengers,
+                    name:                   result.name,
+                    model:                  result.model,
+                    vehicle_class:          result.vehicle_class,
+                    manufacturer:           result.manufacturer,
+                    cost:                   result.cost_in_credits,
+                    length:                 result.length,
+                    minimum_crew:           result.crew,
+                    maximum_passengers:     result.passengers,
                     max_atmosphering_speed: result.max_atmosphering_speed,
-                    cargo_capacity: result.cargo_capacity,
-                    supply_capacity: result.consumables,          
+                    cargo_capacity:         result.cargo_capacity,
+                    supply_capacity:        result.consumables,          
                     detailURLs: {
-                        filmURLs:       result.films,
-                        characterURLs:  result.pilots,
+                        filmURLs:           result.films,
+                        characterURLs:      result.pilots,
                     },
                 }
                 return vehicle;

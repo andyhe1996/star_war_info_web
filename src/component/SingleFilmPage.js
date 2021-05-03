@@ -31,17 +31,17 @@ function SingleFilmPage() {
             const result = response.data;
             console.log(response);
             const thisFilm = {
-                title: result.title,
-                releaseDate: result.release_date,
-                description: result.opening_crawl,
-                director: result.director,
-                producer: result.producer,
+                title:              result.title,
+                releaseDate:        result.release_date,
+                description:        result.opening_crawl,
+                director:           result.director,
+                producer:           result.producer,
                 detailURLs: {
-                    characterURLs: result.characters,
-                    planetURLs: result.planets,
-                    speciesURLs: result.species,
-                    starshipURLs: result.starships,
-                    vehicleURLs: result.vehicles,
+                    characterURLs:  result.characters,
+                    planetURLs:     result.planets,
+                    speciesURLs:    result.species,
+                    starshipURLs:   result.starships,
+                    vehicleURLs:    result.vehicles,
                 },
             }
             setFilm(thisFilm);

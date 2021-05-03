@@ -31,20 +31,20 @@ function SingleCharacterPage() {
             const result = response.data;
             console.log(response);
             const thisCharacter = {
-                name: result.name,
-                gender: result.gender,
-                height: result.height,
-                mass: result.mass,
-                birth_year: result.birth_year,
-                skin_color: result.skin_color,
-                hair_color: result.hair_color,
-                eye_color: result.eye_color,
+                name:               result.name,
+                gender:             result.gender,
+                height:             result.height,
+                mass:               result.mass,
+                birth_year:         result.birth_year,
+                skin_color:         result.skin_color,
+                hair_color:         result.hair_color,
+                eye_color:          result.eye_color,
                 detailURLs: {
-                    filmURLs: result.films,
-                    planetURLs: [result.homeworld],
-                    speciesURLs: result.species,
-                    starshipURLs: result.starships,
-                    vehicleURLs: result.vehicles,
+                    filmURLs:       result.films,
+                    planetURLs:     [result.homeworld],
+                    speciesURLs:    result.species,
+                    starshipURLs:   result.starships,
+                    vehicleURLs:    result.vehicles,
                 },
             }
             setCharacter(thisCharacter);
