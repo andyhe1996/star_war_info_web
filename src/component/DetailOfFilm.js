@@ -2,6 +2,10 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Characters from './Characters';
+import Starships from './Starships';
+import Vehicles from './Vehicles';
+import Planets from './Planets';
+import Species from './Species';
 
 function DetailOfFilm({detailURLs}) {
     const [isOpen, setIsOpen] = useState(false);
@@ -10,7 +14,6 @@ function DetailOfFilm({detailURLs}) {
     const [species, setSpecies] = useState([]);
     const [starships, setStarships] = useState([]);
     const [vehicles, setVehicles] = useState([]);
-    const baseURL = 'https://swapi.dev/api/'
 
     useEffect(() => {
         console.log("re-render")
@@ -110,9 +113,9 @@ function DetailOfFilm({detailURLs}) {
                         designation: speciesData.designation,
                         average_height: speciesData.average_height,
                         average_lifespan: speciesData.average_lifespan,
-                        skin_color: speciesData.skin_color,
-                        hair_color: speciesData.hair_color,
-                        eye_color: speciesData.eye_color,
+                        skin_colors: speciesData.skin_colors,
+                        hair_colors: speciesData.hair_colors,
+                        eye_colors: speciesData.eye_colors,
                         language: speciesData.language,
                     });
                 }));
@@ -215,14 +218,22 @@ function DetailOfFilm({detailURLs}) {
         <div className="section">
             <Button type="button" class="btn btn-secondary" onClick={() => getMoreDetails()}>{buttonTextChange()}</Button>
             <div class="row">
+                <div class="col-sm-6">
+                    <Planets planetsData={planets} isOpen={isOpen}/>
+                </div>
+                <div class="col-sm-6">
+                    <Species speciesData={species} isOpen={isOpen}/>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm-4">
                     <Characters charactersData={characters} isOpen={isOpen}/>
                 </div>
                 <div class="col-sm-4">
-                    <Characters charactersData={characters} isOpen={isOpen}/>
+                    <Starships starshipsData={starships} isOpen={isOpen}/>
                 </div>
                 <div class="col-sm-4">
-                    <Characters charactersData={characters} isOpen={isOpen}/>
+                    <Vehicles vehiclesData={vehicles} isOpen={isOpen}/>
                 </div>
             </div>
         </div>
