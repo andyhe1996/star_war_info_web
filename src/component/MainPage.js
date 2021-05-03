@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, useParams} from "react-router-dom";
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Toast from 'react-bootstrap/Toast';
 import Container from 'react-bootstrap/Container';
@@ -44,7 +43,7 @@ function MainPage() {
     }
 
     return (
-        <div className="section">
+        <div className="mainpage">
             {console.log("in return films")}
             {console.log(films)}
             {films && films.map((film, index) => {
