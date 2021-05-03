@@ -1,16 +1,82 @@
+import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Container, Jumbotron} from 'react-bootstrap';
+import {Container, Jumbotron, Row, Col} from 'react-bootstrap';
 
 
 function CharactersPage() {
+    const [characters, setCharacters] = useState([]);
+    const URL = 'https://swapi.dev/api/'
 
+    useEffect(() => {
+        getCharacters();
+    }, []);
+
+    async function getCharacters() {
+        const allCharacters = URL + "people/";
+        try {
+            let response = await axios.get(allCharacters);
+            let results = response.data["results"];
+            console.log(response);
+            // keep grab next page if exist
+            while (response.data["next"]) {
+                const nextPage = response.data["next"];
+                response = await axios.get(nextPage);
+                results = results.concat(response.data["results"]);
+                console.log(response);
+            }
+            setCharacters(results.map(result => {
+                const character = {
+                    name: result.name,
+                    gender: result.gender,
+                    birth_year: result.birth_year,
+                    height: result.height,
+                    mass: result.mass,
+                    skin_color: result.skin_color,
+                    hair_color: result.hair_color,
+                    eye_color: result.eye_color,                    
+                    detailURLs: {
+                        filmURLs:   result.films,
+                        planetURLs: result.homeworld,
+                        speciesURLs: result.species,
+                        starshipURLs: result.starships,
+                        vehicleURLs: result.vehicles,
+                    },
+                }
+                return character;
+            }));
+        } catch(error) {
+            console.log(error);
+        }
+        
+    }
     return (
         <div className="characterspage">
-            <Container className="p-3 my-3 bg-dark text-white">
-                <Jumbotron>
-
-                </Jumbotron>
-            </Container>
+           {characters && characters.map((character, index) => {
+                return (
+                    <Container key={index} className="p-3 my-3 bg-dark text-white">
+                        <Jumbotron>
+                            <Row>
+                                <Col xs={8}>
+                                    <div key={index} className="character">
+                                        <h2>{character.name}</h2>
+                                        <b>Gender: </b>{character.gender}<br/>
+                                        <b>Height: </b>{character.height}<br/>
+                                        <b>Mass: </b>{character.mass}<br/>
+                                        <b>Birth Year: </b>{character.birth_year}<br/>
+                                        <b>Skin Color: </b>{character.skin_color}<br/>
+                                        <b>Hair Color: </b>{character.hair_color}<br/>
+                                        <b>Eye Color: </b>{character.eye_color}<br/>
+                                    </div>
+                                </Col>
+                                <Col>
+                                    <p>leave space here</p>
+                                </Col>
+                            </Row>
+                            {/* <DetailOfFilm detailURLs={film.detailURLs}/> */}
+                        </Jumbotron>
+                    </Container>
+                );
+            })}
         </div>
     );
 }

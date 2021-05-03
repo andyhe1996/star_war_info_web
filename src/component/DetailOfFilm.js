@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
+import {Container, Button, Row, Col} from 'react-bootstrap';
 import Characters from './detailComponent/Characters';
 import Starships from './detailComponent/Starships';
 import Vehicles from './detailComponent/Vehicles';
@@ -52,28 +52,28 @@ function DetailOfFilm({detailURLs}) {
     }
 
     return (
-        <div className="section">
+        <Container>
             <Button variant="secondary" size="lg" onClick={() => getMoreDetails()}>{buttonTextChange()}</Button>
-            <div class="row">
-                <div class="col-sm-6">
+            <Row>
+                <Col xs={6}>
                     <Planets planetsData={planets} isOpen={isOpen}/>
-                </div>
-                <div class="col-sm-6">
+                </Col>
+                <Col xs={6}>
                     <Species speciesData={species} isOpen={isOpen}/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={4}>
                     <Characters charactersData={characters} isOpen={isOpen}/>
-                </div>
-                <div class="col-sm-4">
+                </Col>
+                <Col xs={4}>
                     <Starships starshipsData={starships} isOpen={isOpen}/>
-                </div>
-                <div class="col-sm-4">
+                </Col>
+                <Col xs={4}>
                     <Vehicles vehiclesData={vehicles} isOpen={isOpen}/>
-                </div>
-            </div>
-        </div>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

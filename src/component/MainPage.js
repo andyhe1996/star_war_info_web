@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Jumbotron} from 'react-bootstrap';
+import {Container, Jumbotron, Row, Col} from 'react-bootstrap';
 import axios from 'axios';
 import DetailOfFilm from './DetailOfFilm'
 
@@ -14,9 +14,17 @@ function MainPage() {
     async function getFilms() {
         const allFilms = URL + "films/";
         try {
-            const response = await axios.get(allFilms);
-            console.log(response.data["results"]);
-            setFilms(response.data["results"].map(result => {
+            let response = await axios.get(allFilms);
+            let results = response.data["results"];
+            console.log(response);
+            // keep grab next page if exist
+            while (response.data["next"]) {
+                const nextPage = response.data["next"];
+                response = await axios.get(nextPage);
+                results = results.concat(response.data["results"]);
+                console.log(response);
+            }
+            setFilms(results.map(result => {
                 const film = {
                     title: result.title,
                     releaseDate: result.release_date,
@@ -45,22 +53,22 @@ function MainPage() {
             {console.log(films)}
             {films && films.map((film, index) => {
                 return (
-                    <Container className="p-3 my-3 bg-dark text-white">
+                    <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>
-                        <div class="row">
-                            <div class="col-sm-8">
+                        <Row>
+                            <Col xs={8}>
                                 <div key={index} className="film">
                                     <h2>{film.title}</h2>
-                                    <b>Release Date: </b><text>{film.releaseDate}<br/></text>
-                                    <b>Description: </b><text>{film.description}<br/></text>
-                                    <b>Director: </b><text>{film.director}<br/></text>
-                                    <b>Producer: </b><text>{film.producer}<br/></text> 
+                                    <b>Release Date: </b>{film.releaseDate}<br/>
+                                    <b>Description: </b>{film.description}<br/>
+                                    <b>Director: </b>{film.director}<br/>
+                                    <b>Producer: </b>{film.producer}<br/>
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
+                            </Col>
+                            <Col>
                                 <p>leave space here</p>
-                            </div>
-                        </div>
+                            </Col>
+                        </Row>
                         <DetailOfFilm detailURLs={film.detailURLs}/>
                         </Jumbotron>
                     </Container>
