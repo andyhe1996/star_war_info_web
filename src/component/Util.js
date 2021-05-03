@@ -59,7 +59,7 @@ function getFilms(filmURLs, setFilmsFunc) {
             setFilmsFunc(filmResponses.map((response) => {
                 const filmData = response.data;
                 return ({
-                    id:             response.id,
+                    id:             getIDFromURL(filmData.url),
                     title:          filmData.title,
                     releaseDate:    filmData.release_date,
                     description:    filmData.opening_crawl,
@@ -85,7 +85,7 @@ function getCharacters(characterURLs, setCharactersFunc) {
             setCharactersFunc(characterResponses.map((response) => {
                 const characterData = response.data;
                 return ({
-                    id:         response.id,
+                    id:         getIDFromURL(characterData.url),
                     name:       characterData.name,
                     gender:     characterData.gender,
                     height:     characterData.height,
@@ -114,7 +114,7 @@ function getPlanets(planetURLs, setPlanetsFunc) {
             setPlanetsFunc(planetResponses.map((response) => {
                 const planetData = response.data;
                 return ({
-                    id:                 response.id,
+                    id:                 getIDFromURL(planetData.url),
                     name:               planetData.name,
                     diameter:           planetData.diameter,
                     rotation_period:    planetData.rotation_period,
@@ -144,7 +144,7 @@ function getSpecies(speciesURLs, setSpeciesFunc) {
             setSpeciesFunc(speciesResponses.map((response) => {
                 const speciesData = response.data;
                 return ({
-                    id:                 response.id,
+                    id:                 getIDFromURL(speciesData.url),
                     name:               speciesData.name,
                     classification:     speciesData.classification,
                     designation:        speciesData.designation,
@@ -174,7 +174,7 @@ function getStarships(starshipURLs, setStarshipsFunc) {
             setStarshipsFunc(starshipResponses.map((response) => {
                 const starshipData = response.data;
                 return ({
-                    id:                     response.id,
+                    id:                     getIDFromURL(starshipData.url),
                     name:                   starshipData.name,
                     model:                  starshipData.model,
                     starship_class:         starshipData.starship_class,
@@ -208,7 +208,7 @@ function getVehicles(vechicleURLs, setVehiclesFunc) {
             setVehiclesFunc(vehicleResponses.map((response) => {
                 const vehicleData = response.data;
                 return ({
-                    id:                     response.id,
+                    id:                     getIDFromURL(vehicleData.url),
                     name:                   vehicleData.name,
                     model:                  vehicleData.model,
                     vehicle_class:          vehicleData.vehicle_class,
@@ -226,4 +226,10 @@ function getVehicles(vechicleURLs, setVehiclesFunc) {
     }
 }
 
-export {bulkGet, getAllPages, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles}
+function getIDFromURL(URL) {
+    const urlElement = URL.split("/");
+    // the id is the sencond last or the url
+    return urlElement[urlElement.length - 2];
+}
+
+export {bulkGet, getAllPages, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles, getIDFromURL}

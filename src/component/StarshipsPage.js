@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages} from './Util';
+import {getAllPages, getIDFromURL} from './Util';
 
 
 function StarshipsPage() {
@@ -17,6 +17,7 @@ function StarshipsPage() {
             const results = await getAllPages(allStarships);
             setStarships(results.map(result => {
                 const starship = {
+                    id:                     getIDFromURL(result.url),
                     name:                   result.name,
                     model:                  result.model,
                     starship_class:         result.starship_class,
@@ -45,8 +46,7 @@ function StarshipsPage() {
     return (
         <div className="starshipspage">
            {starships && starships.map((starship, index) => {
-                const specieID = index + 1;
-                const specieLink = "/starships/" + specieID;
+                const starshipLink = "/starships/" + starship.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>
@@ -72,7 +72,7 @@ function StarshipsPage() {
                                     <p>leave space here for image</p>
                                 </Col>
                             </Row>
-                            <Button variant="secondary" size="lg" href={specieLink}>More Details</Button>
+                            <Button variant="secondary" size="lg" href={starshipLink}>More Details</Button>
                         </Jumbotron>
                     </Container>
                 );

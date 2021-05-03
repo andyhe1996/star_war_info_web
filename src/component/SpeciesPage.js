@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages} from './Util';
+import {getAllPages, getIDFromURL} from './Util';
 
 
 function SpeciesPage() {
@@ -17,6 +17,7 @@ function SpeciesPage() {
             const results = await getAllPages(allSpecies);
             setSpecies(results.map(result => {
                 const singleSpecies = {
+                    id:                 getIDFromURL(result.url),
                     name:               result.name,
                     classification:     result.classification,
                     designation:        result.designation,
@@ -42,8 +43,7 @@ function SpeciesPage() {
     return (
         <div className="speciespage">
            {species && species.map((singleSpecies, index) => {
-                const specieID = index + 1;
-                const specieLink = "/species/" + specieID;
+                const speciesLink = "/species/" + singleSpecies.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>
@@ -65,7 +65,7 @@ function SpeciesPage() {
                                     <p>leave space here for image</p>
                                 </Col>
                             </Row>
-                            <Button variant="secondary" size="lg" href={specieLink}>More Details</Button>
+                            <Button variant="secondary" size="lg" href={speciesLink}>More Details</Button>
                         </Jumbotron>
                     </Container>
                 );

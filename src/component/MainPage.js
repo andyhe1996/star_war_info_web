@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages} from './Util';
+import {getAllPages, getIDFromURL} from './Util';
 
 function MainPage() {
     const [films, setFilms] = useState([]);
@@ -16,6 +16,7 @@ function MainPage() {
             const results = await getAllPages(allFilms);
             setFilms(results.map(result => {
                 const film = {
+                    id:                 getIDFromURL(result.url),
                     title:              result.title,
                     releaseDate:        result.release_date,
                     description:        result.opening_crawl,
@@ -42,8 +43,7 @@ function MainPage() {
             {console.log("in return films")}
             {console.log(films)}
             {films && films.map((film, index) => {
-                const filmID = index + 1;
-                const filmLink = "/films/" + filmID;
+                const filmLink = "/films/" + film.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>

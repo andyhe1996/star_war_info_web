@@ -24,8 +24,7 @@ function Vehicles({vehiclesData=[]}) {
             <h4>Vehicles</h4>
             <Accordion defaultActiveKey="0">
                 {vehiclesData && vehiclesData.map((vehicle, index) => {
-                    const vehicleID = index + 1;
-                    const vehicleLink = "/vehicles/" + vehicleID;
+                    const vehicleLink = "/vehicles/" + vehicle.id;
                     return (
                         <Card key={index} >
                             <Card.Header className="bg-secondary text-white">

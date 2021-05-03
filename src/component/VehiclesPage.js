@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages} from './Util';
+import {getAllPages, getIDFromURL} from './Util';
 
 
 function VehiclesPage() {
@@ -17,6 +17,7 @@ function VehiclesPage() {
             const results = await getAllPages(allVehicles);
             setVehicles(results.map(result => {
                 const vehicle = {
+                    id:                     getIDFromURL(result.url),
                     name:                   result.name,
                     model:                  result.model,
                     vehicle_class:          result.vehicle_class,
@@ -43,8 +44,7 @@ function VehiclesPage() {
     return (
         <div className="vehiclespage">
            {vehicles && vehicles.map((vehicle, index) => {
-                const specieID = index + 1;
-                const specieLink = "/vehicles/" + specieID;
+                const vehicleLink = "/vehicles/" + vehicle.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>
@@ -68,7 +68,7 @@ function VehiclesPage() {
                                     <p>leave space here for image</p>
                                 </Col>
                             </Row>
-                            <Button variant="secondary" size="lg" href={specieLink}>More Details</Button>
+                            <Button variant="secondary" size="lg" href={vehicleLink}>More Details</Button>
                         </Jumbotron>
                     </Container>
                 );

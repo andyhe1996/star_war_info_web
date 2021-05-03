@@ -6,8 +6,7 @@ function Films({filmsData=[]}) {
             <h4>Films</h4>
             <Accordion defaultActiveKey="0">
                 {filmsData && filmsData.map((film, index) => {
-                    const filmID = index + 1;
-                    const filmLink = "/films/" + filmID;
+                    const filmLink = "/films/" + film.id;
                     return (
                         <Card key={index} >
                             <Card.Header className="bg-secondary text-white">

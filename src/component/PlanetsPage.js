@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages} from './Util';
+import {getAllPages, getIDFromURL} from './Util';
 
 
 function PlanetsPage() {
@@ -17,6 +17,7 @@ function PlanetsPage() {
             const results = await getAllPages(allPlanets);
             setPlanets(results.map(result => {
                 const planet = {
+                    id:                 getIDFromURL(result.url),
                     name:               result.name,
                     diameter:           result.diameter,
                     rotation_period:    result.rotation_period,
@@ -41,8 +42,7 @@ function PlanetsPage() {
     return (
         <div className="planetspage">
            {planets && planets.map((planet, index) => {
-                const planetID = index + 1;
-                const planetLink = "/planets/" + planetID;
+                const planetLink = "/planets/" + planet.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>

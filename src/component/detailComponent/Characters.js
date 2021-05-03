@@ -19,8 +19,7 @@ function Characters({charactersData=[], isOpen=false}) {
             <h4>Characters</h4>
             <Accordion defaultActiveKey="0">
                 {charactersData && charactersData.map((character, index) => {
-                    const characterID = index + 1;
-                    const characterLink = "/characters/" + characterID;
+                    const characterLink = "/characters/" + character.id;
                     return (
                         <Card key={index} >
                             <Card.Header className="bg-secondary text-white">

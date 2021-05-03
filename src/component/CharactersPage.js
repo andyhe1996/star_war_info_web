@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages} from './Util';
+import {getAllPages, getIDFromURL} from './Util';
 
 
 function CharactersPage() {
@@ -17,6 +17,7 @@ function CharactersPage() {
             const results = await getAllPages(allCharacters);
             setCharacters(results.map(result => {
                 const character = {
+                    id:                 getIDFromURL(result.url),
                     name:               result.name,
                     gender:             result.gender,
                     birth_year:         result.birth_year,
@@ -43,8 +44,7 @@ function CharactersPage() {
     return (
         <div className="characterspage">
            {characters && characters.map((character, index) => {
-                const characterID = index + 1;
-                const characterLink = "/characters/" + characterID;
+                const characterLink = "/characters/" + character.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>

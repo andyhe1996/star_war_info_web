@@ -24,8 +24,7 @@ function Starships({starshipsData=[]}) {
             <h4>Starships</h4>
             <Accordion defaultActiveKey="0">
                 {starshipsData && starshipsData.map((starship, index) => {
-                    const starshipID = index + 1;
-                    const starshipLink = "/starships/" + starshipID;
+                    const starshipLink = "/starships/" + starship.id;
                     return (
                         <Card key={index} >
                             <Card.Header className="bg-secondary text-white">
