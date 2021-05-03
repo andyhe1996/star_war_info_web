@@ -27,7 +27,10 @@ function DetailOfFilm({detailURLs}) {
             getSpecies();
             getStarships();
             getVehicles();
-        } else {
+        } else if (characters.length === 0 || planets.length === 0 || species.length === 0 || starships.length === 0 || vehicles.length === 0){
+            // do nothing, button click again when previous requests haven't come back
+        } 
+        else {
             setIsOpen(false);
             setCharacters([]);
             setPlanets([]);
@@ -194,7 +197,15 @@ function DetailOfFilm({detailURLs}) {
                 console.log(response);
                 responses.push({
                     id:     index,
+                    error:  false,
                     data:   response.data,
+                });
+            }).catch((error) => {
+                console.log(error);
+                responses.push({
+                    id:     index,
+                    error:  true,
+                    data:   {},
                 });
             });    
         });
@@ -216,7 +227,7 @@ function DetailOfFilm({detailURLs}) {
 
     return (
         <div className="section">
-            <Button type="button" class="btn btn-secondary" onClick={() => getMoreDetails()}>{buttonTextChange()}</Button>
+            <Button variant="secondary" size="lg" onClick={() => getMoreDetails()}>{buttonTextChange()}</Button>
             <div class="row">
                 <div class="col-sm-6">
                     <Planets planetsData={planets} isOpen={isOpen}/>

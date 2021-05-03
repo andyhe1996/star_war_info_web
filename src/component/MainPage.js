@@ -17,25 +17,30 @@ function MainPage() {
 
     async function getFilms() {
         const allFilms = URL + "films/";
-        const response = await axios.get(allFilms);
-        console.log(response.data["results"]);
-        setFilms(response.data["results"].map(result => {
-            const film = {
-                title: result.title,
-                releaseDate: result.release_date,
-                description: result.opening_crawl,
-                director: result.director,
-                producer: result.producer,
-                detailURLs: {
-                    characterURLs: result.characters,
-                    planetURLs: result.planets,
-                    speciesURLs: result.species,
-                    starshipURLs: result.starships,
-                    vehicleURLs: result.vehicles,
-                },
-            }
-            return film;
-        }));
+        try {
+            const response = await axios.get(allFilms);
+            console.log(response.data["results"]);
+            setFilms(response.data["results"].map(result => {
+                const film = {
+                    title: result.title,
+                    releaseDate: result.release_date,
+                    description: result.opening_crawl,
+                    director: result.director,
+                    producer: result.producer,
+                    detailURLs: {
+                        characterURLs: result.characters,
+                        planetURLs: result.planets,
+                        speciesURLs: result.species,
+                        starshipURLs: result.starships,
+                        vehicleURLs: result.vehicles,
+                    },
+                }
+                return film;
+            }));
+        } catch(error) {
+            console.log(error);
+        }
+        
     }
 
     return (
