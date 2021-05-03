@@ -226,10 +226,19 @@ function getVehicles(vechicleURLs, setVehiclesFunc) {
     }
 }
 
+// get the ID from URL
 function getIDFromURL(URL) {
     const urlElement = URL.split("/");
     // the id is the sencond last or the url
     return urlElement[urlElement.length - 2];
 }
 
-export {bulkGet, getAllPages, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles, getIDFromURL}
+// check if the key word is in the context
+function checkKeyInString(context, keyword) {
+    if (context == null || context === "" || context.length < keyword.length) {
+        return false;
+    }
+    return context.toLowerCase().includes(keyword.toLowerCase());
+}
+
+export {bulkGet, getAllPages, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles, getIDFromURL, checkKeyInString}

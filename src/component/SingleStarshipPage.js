@@ -11,7 +11,7 @@ function SingleStarshipPage() {
     const [films, setFilms] = useState([]);
     const [characters, setCharacters] = useState([]);
 
-    const baseURL = 'https://swapi.dev/api/'
+    const baseURL = 'https://swapi.dev/api/';
     let { id } = useParams();
 
     useEffect(() => {
@@ -51,7 +51,6 @@ function SingleStarshipPage() {
         } catch(error) {
             console.log(error);
         }
-        
     }
 
     return (

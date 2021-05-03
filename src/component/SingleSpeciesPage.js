@@ -12,7 +12,7 @@ function SingleSpeciesPage() {
     const [planets, setPlanets] = useState([]);
     const [films, setFilms] = useState([]);
 
-    const baseURL = 'https://swapi.dev/api/'
+    const baseURL = 'https://swapi.dev/api/';
     let { id } = useParams();
 
     useEffect(() => {
@@ -50,7 +50,6 @@ function SingleSpeciesPage() {
         } catch(error) {
             console.log(error);
         }
-        
     }
 
     return (

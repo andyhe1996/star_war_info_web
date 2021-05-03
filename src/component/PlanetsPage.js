@@ -5,7 +5,7 @@ import {getAllPages, getIDFromURL} from './Util';
 
 function PlanetsPage() {
     const [planets, setPlanets] = useState([]);
-    const URL = 'https://swapi.dev/api/'
+    const URL = 'https://swapi.dev/api/';
 
     useEffect(() => {
         getPlanets();
@@ -37,7 +37,6 @@ function PlanetsPage() {
         } catch(error) {
             console.log(error);
         }
-        
     }
     return (
         <div className="planetspage">

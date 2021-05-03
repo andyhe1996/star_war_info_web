@@ -5,7 +5,7 @@ import {getAllPages, getIDFromURL} from './Util';
 
 function CharactersPage() {
     const [characters, setCharacters] = useState([]);
-    const URL = 'https://swapi.dev/api/'
+    const URL = 'https://swapi.dev/api/';
 
     useEffect(() => {
         getCharacters();
@@ -39,7 +39,6 @@ function CharactersPage() {
         } catch(error) {
             console.log(error);
         }
-        
     }
     return (
         <div className="characterspage">

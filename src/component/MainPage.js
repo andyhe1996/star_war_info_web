@@ -1,20 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages, getIDFromURL} from './Util';
+import {Container, Jumbotron, Row, Col, Button, Form} from 'react-bootstrap';
+import {checkKeyInString, getAllPages, getIDFromURL} from './Util';
 
 function MainPage() {
     const [films, setFilms] = useState([]);
-    const baseURL = 'https://swapi.dev/api/'
+    const [displayFilms, setDisplayFilms] = useState([]);
+    const [searchField, setSearchField] = useState("");
+    const baseURL = 'https://swapi.dev/api/';
 
     useEffect(() => {
         getFilms();
     }, []);
 
     async function getFilms() {
-        const allFilms = baseURL + "films/";
+        const FilmsURL = baseURL + "films/";
         try {
-            const results = await getAllPages(allFilms);
-            setFilms(results.map(result => {
+            const results = await getAllPages(FilmsURL);
+            const allFilms = results.map(result => {
                 const film = {
                     id:                 getIDFromURL(result.url),
                     title:              result.title,
@@ -31,18 +33,36 @@ function MainPage() {
                     },
                 }
                 return film;
-            }));
+            });
+            setFilms(allFilms);
+            setDisplayFilms(allFilms);
         } catch(error) {
             console.log(error);
         }
+    }
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const searchValue = event.target.value;
+        setSearchField(searchValue);
+        const filteredFilms = films.filter((film) => {
+            const isInTitle = checkKeyInString(film.title, searchValue);
+            const isInDescription = checkKeyInString(film.description, searchValue);
+            return isInTitle || isInDescription;
+        });
         
+        setDisplayFilms(filteredFilms);
     }
 
     return (
         <div className="mainpage">
-            {console.log("in return films")}
-            {console.log(films)}
-            {films && films.map((film, index) => {
+            <Container className="p-3 my-3 bg-dark text-white">
+                <Form>
+                    <Form.Label>Search</Form.Label>
+                    <Form.Control type="text" value={searchField} onChange={handleSearch}/>
+                </Form>
+            </Container>
+            {displayFilms && displayFilms.map((film, index) => {
                 const filmLink = "/films/" + film.id;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">

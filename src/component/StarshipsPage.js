@@ -5,7 +5,7 @@ import {getAllPages, getIDFromURL} from './Util';
 
 function StarshipsPage() {
     const [starships, setStarships] = useState([]);
-    const URL = 'https://swapi.dev/api/'
+    const URL = 'https://swapi.dev/api/';
 
     useEffect(() => {
         getStarships();
@@ -41,7 +41,6 @@ function StarshipsPage() {
         } catch(error) {
             console.log(error);
         }
-        
     }
     return (
         <div className="starshipspage">

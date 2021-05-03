@@ -5,7 +5,7 @@ import {getAllPages, getIDFromURL} from './Util';
 
 function SpeciesPage() {
     const [species, setSpecies] = useState([]);
-    const URL = 'https://swapi.dev/api/'
+    const URL = 'https://swapi.dev/api/';
 
     useEffect(() => {
         getAllSpecies();
@@ -38,7 +38,6 @@ function SpeciesPage() {
         } catch(error) {
             console.log(error);
         }
-        
     }
     return (
         <div className="speciespage">
