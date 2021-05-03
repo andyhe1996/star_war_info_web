@@ -14,29 +14,21 @@ import {Accordion, Button, Card} from 'react-bootstrap';
 //     language: speciesData.language,
 // // }
 
-function Species({speciesData=[], isOpen=false}) {
-    function displayTitle() {
-        if(isOpen){
-            return (
-            <h4>Species</h4>
-            );
-        }
-        return
-    }
+function Species({speciesData=[]}) {
     return (
         <div className="species">
-            {displayTitle()}
+            <h4>Species</h4>
             <Accordion defaultActiveKey="0">
                 {speciesData && speciesData.map((singleSpecies, index) => {
                     return (
                         <Card key={index} >
-                            <Card.Header class="bg-secondary text-white">
+                            <Card.Header className="bg-secondary text-white">
                                 <Accordion.Toggle as={Button} variant="secondary" eventKey={index.toString()}>
                                     {singleSpecies.name}
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={index.toString()}>
-                                <Card.Body class="text-dark">
+                                <Card.Body className="text-dark">
                                     <Card.Title>{singleSpecies.name}</Card.Title>
                                     <Card.Text>
                                         <b>Classification: </b>{singleSpecies.classification}<br/>

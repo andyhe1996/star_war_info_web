@@ -14,29 +14,21 @@ import {Accordion, Button, Card} from 'react-bootstrap';
 //     surface_water: planetData.surface_water,
 // }
 
-function Planets({planetsData=[], isOpen=false}) {
-    function displayTitle() {
-        if(isOpen){
-            return (
-            <h4>Planets</h4>
-            );
-        }
-        return
-    }
+function Planets({planetsData=[]}) {
     return (
         <div className="planets">
-            {displayTitle()}
+            <h4>Planets</h4>
             <Accordion defaultActiveKey="0">
                 {planetsData && planetsData.map((planet, index) => {
                     return (
                         <Card key={index} >
-                            <Card.Header class="bg-secondary text-white">
+                            <Card.Header className="bg-secondary text-white">
                                 <Accordion.Toggle as={Button} variant="secondary" eventKey={index.toString()}>
                                     {planet.name}
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={index.toString()}>
-                                <Card.Body class="text-dark">
+                                <Card.Body className="text-dark">
                                     <Card.Title>{planet.name}</Card.Title>
                                     <Card.Text>
                                         <b>Diameter: </b>{planet.diameter}<br/>

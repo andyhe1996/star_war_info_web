@@ -18,29 +18,21 @@ import {Accordion, Button, Card} from 'react-bootstrap';
 //     supply_capacity: vehicleData.consumables,
 // }
 
-function Vehicles({vehiclesData=[], isOpen=false}) {
-    function displayTitle() {
-        if(isOpen){
-            return (
-            <h4>Vehicles</h4>
-            );
-        }
-        return
-    }
+function Vehicles({vehiclesData=[]}) {
     return (
         <div className="vehicles">
-            {displayTitle()}
+            <h4>Vehicles</h4>
             <Accordion defaultActiveKey="0">
                 {vehiclesData && vehiclesData.map((vehicle, index) => {
                     return (
                         <Card key={index} >
-                            <Card.Header class="bg-secondary text-white">
+                            <Card.Header className="bg-secondary text-white">
                                 <Accordion.Toggle as={Button} variant="secondary" eventKey={index.toString()}>
                                     {vehicle.name}
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={index.toString()}>
-                                <Card.Body class="text-dark">
+                                <Card.Body className="text-dark">
                                     <Card.Title>{vehicle.name}</Card.Title>
                                     <Card.Text>
                                         <b>Model: </b>{vehicle.model}<br/>

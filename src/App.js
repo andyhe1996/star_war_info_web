@@ -3,6 +3,8 @@ import {BrowserRouter as Router, Switch, Route, Link, useParams} from "react-rou
 import {Navbar, Nav} from "react-bootstrap";
 import CharactersPage from './component/CharactersPage';
 import MainPage from './component/MainPage';
+import SingleFilmPage from './component/SingleFilmPage';
+import SingleCharacterPage from './component/SingleCharacterPage';
 
 
 function App() {
@@ -23,6 +25,24 @@ function App() {
         <Switch>
           <Route exact path="/">
             <MainPage />
+          </Route>
+          <Route path="/films/:id">
+            <SingleFilmPage />
+          </Route>
+          <Route path="/characters/:id">
+            <SingleCharacterPage />
+          </Route>
+          <Route path="/planets/:id">
+            <SingleFilmPage />
+          </Route>
+          <Route path="/species/:id">
+            <SingleFilmPage />
+          </Route>
+          <Route path="/starships/:id">
+            <SingleFilmPage />
+          </Route>
+          <Route path="/vehicles/:id">
+            <SingleFilmPage />
           </Route>
           <Route path="/characters">
             <CharactersPage />

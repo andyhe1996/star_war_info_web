@@ -1,18 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Jumbotron, Row, Col} from 'react-bootstrap';
+import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
 import axios from 'axios';
-import DetailOfFilm from './DetailOfFilm'
 
 function MainPage() {
     const [films, setFilms] = useState([]);
-    const URL = 'https://swapi.dev/api/'
+    const baseURL = 'https://swapi.dev/api/'
 
     useEffect(() => {
         getFilms();
     }, []);
 
     async function getFilms() {
-        const allFilms = URL + "films/";
+        const allFilms = baseURL + "films/";
         try {
             let response = await axios.get(allFilms);
             let results = response.data["results"];
@@ -52,6 +51,8 @@ function MainPage() {
             {console.log("in return films")}
             {console.log(films)}
             {films && films.map((film, index) => {
+                const filmID = index + 1;
+                const filmLink = "/films/" + filmID;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>
@@ -69,7 +70,7 @@ function MainPage() {
                                 <p>leave space here</p>
                             </Col>
                         </Row>
-                        <DetailOfFilm detailURLs={film.detailURLs}/>
+                        <Button variant="secondary" size="lg" href={filmLink}>More Details</Button>
                         </Jumbotron>
                     </Container>
                 );

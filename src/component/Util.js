@@ -28,6 +28,32 @@ function bulkGet(URLs) {
     });
 }
 
+// get all films and update the component films state by passing the setFilms function
+function getFilms(filmURLs, setFilms) {
+    console.log("in getFilms()")
+    
+    if (filmURLs == null) {
+        // nothing
+        console.log("nothing here")
+    }
+    else {
+        // console.log(filmURLs)
+        bulkGet(filmURLs).then((filmResponses) => {
+            setFilms(filmResponses.map((response) => {
+                const filmData = response.data;
+                return ({
+                    id: response.id,
+                    title: filmData.title,
+                    releaseDate: filmData.release_date,
+                    description: filmData.opening_crawl,
+                    director: filmData.director,
+                    producer: filmData.producer,
+                });
+            }));
+        });
+    }
+}
+
 // get all characters and update the component characters state by passing the setCharacters function
 function getCharacters(characterURLs, setCharacters) {
     console.log("in getCharacters()")
@@ -183,4 +209,4 @@ function getVehicles(vechicleURLs, setVehicles) {
     }
 }
 
-export {bulkGet, getCharacters, getPlanets, getSpecies, getStarships, getVehicles}
+export {bulkGet, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles}

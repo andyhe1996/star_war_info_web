@@ -18,29 +18,21 @@ import {Accordion, Button, Card} from 'react-bootstrap';
 //     supply_capacity: starshipData.consumables,
 // }
 
-function Starships({starshipsData=[], isOpen=false}) {
-    function displayTitle() {
-        if(isOpen){
-            return (
-            <h4>Starships</h4>
-            );
-        }
-        return
-    }
+function Starships({starshipsData=[]}) {
     return (
         <div className="starships">
-            {displayTitle()}
+            <h4>Starships</h4>
             <Accordion defaultActiveKey="0">
                 {starshipsData && starshipsData.map((starship, index) => {
                     return (
                         <Card key={index} >
-                            <Card.Header class="bg-secondary text-white">
+                            <Card.Header className="bg-secondary text-white">
                                 <Accordion.Toggle as={Button} variant="secondary" eventKey={index.toString()}>
                                     {starship.name}
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={index.toString()}>
-                                <Card.Body class="text-dark">
+                                <Card.Body className="text-dark">
                                     <Card.Title>{starship.name}</Card.Title>
                                     <Card.Text>
                                         <b>Model: </b>{starship.model}<br/>

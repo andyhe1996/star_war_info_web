@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {Container, Jumbotron, Row, Col} from 'react-bootstrap';
+import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
 
 
 function CharactersPage() {
@@ -52,6 +52,8 @@ function CharactersPage() {
     return (
         <div className="characterspage">
            {characters && characters.map((character, index) => {
+                const characterID = index + 1;
+                const characterLink = "/characters/" + characterID;
                 return (
                     <Container key={index} className="p-3 my-3 bg-dark text-white">
                         <Jumbotron>
@@ -72,7 +74,7 @@ function CharactersPage() {
                                     <p>leave space here</p>
                                 </Col>
                             </Row>
-                            {/* <DetailOfFilm detailURLs={film.detailURLs}/> */}
+                            <Button variant="secondary" size="lg" href={characterLink}>More Details</Button>
                         </Jumbotron>
                     </Container>
                 );

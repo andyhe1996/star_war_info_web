@@ -14,28 +14,22 @@ import {Accordion, Button, Card} from 'react-bootstrap';
 // }
 
 function Characters({charactersData=[], isOpen=false}) {
-    function displayTitle() {
-        if(isOpen){
-            return (
-            <h4>Characters</h4>
-            );
-        }
-        return
-    }
     return (
         <div className="characters">
-            {displayTitle()}
+            <h4>Characters</h4>
             <Accordion defaultActiveKey="0">
                 {charactersData && charactersData.map((character, index) => {
+                    const characterID = index + 1;
+                    const characterLink = "/characters/" + characterID;
                     return (
                         <Card key={index} >
-                            <Card.Header class="bg-secondary text-white">
+                            <Card.Header className="bg-secondary text-white">
                                 <Accordion.Toggle as={Button} variant="secondary" eventKey={index.toString()}>
                                     {character.name}
                                 </Accordion.Toggle>
                             </Card.Header>
                             <Accordion.Collapse eventKey={index.toString()}>
-                                <Card.Body class="text-dark">
+                                <Card.Body className="text-dark">
                                     <Card.Title>{character.name}</Card.Title>
                                     <Card.Text>
                                         <b>Gender: </b>{character.gender}<br/>
@@ -46,6 +40,7 @@ function Characters({charactersData=[], isOpen=false}) {
                                         <b>Hair Color: </b>{character.hair_color}<br/>
                                         <b>Eye Color: </b>{character.eye_color}<br/>
                                     </Card.Text>
+                                    <Card.Link href={characterLink}>For more Info</Card.Link>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
