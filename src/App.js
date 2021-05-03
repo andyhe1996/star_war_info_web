@@ -5,6 +5,10 @@ import CharactersPage from './component/CharactersPage';
 import MainPage from './component/MainPage';
 import SingleFilmPage from './component/SingleFilmPage';
 import SingleCharacterPage from './component/SingleCharacterPage';
+import PlanetsPage from './component/PlanetsPage';
+import SpeciesPage from './component/SpeciesPage';
+import StarshipsPage from './component/StarshipsPage';
+import VehiclesPage from './component/VehiclesPage';
 
 
 function App() {
@@ -48,16 +52,16 @@ function App() {
             <CharactersPage />
           </Route>
           <Route path="/planets">
-            <MainPage />
+            <PlanetsPage />
           </Route>
           <Route path="/species">
-            <MainPage />
+            <SpeciesPage />
           </Route>
           <Route path="/starships">
-            <MainPage />
+            <StarshipsPage />
           </Route>
           <Route path="/vehicles">
-            <MainPage />
+            <VehiclesPage />
           </Route>
         </Switch>
     </Router>

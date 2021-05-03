@@ -58,7 +58,7 @@ function MainPage() {
                                 </div>
                             </Col>
                             <Col>
-                                <p>leave space here</p>
+                                <p>leave space here for image</p>
                             </Col>
                         </Row>
                         <Button variant="secondary" size="lg" href={filmLink}>More Details</Button>

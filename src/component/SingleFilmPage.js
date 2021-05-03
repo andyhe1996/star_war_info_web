@@ -72,7 +72,7 @@ function SingleFilmPage() {
                         </div>
                     </Col>
                     <Col>
-                        <p>leave space here</p>
+                        <p>leave space here for image</p>
                     </Col>
                 </Row>
                 <hr/>

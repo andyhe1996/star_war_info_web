@@ -14,7 +14,7 @@ function CharactersPage() {
     async function getCharacters() {
         const allCharacters = URL + "people/";
         try {
-            const results = getAllPages(allCharacters);
+            const results = await getAllPages(allCharacters);
             setCharacters(results.map(result => {
                 const character = {
                     name: result.name,
@@ -62,7 +62,7 @@ function CharactersPage() {
                                     </div>
                                 </Col>
                                 <Col>
-                                    <p>leave space here</p>
+                                    <p>leave space here for image</p>
                                 </Col>
                             </Row>
                             <Button variant="secondary" size="lg" href={characterLink}>More Details</Button>
