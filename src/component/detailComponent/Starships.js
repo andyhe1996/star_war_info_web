@@ -1,6 +1,4 @@
-import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import {Accordion, Button, Card} from 'react-bootstrap';
 
 // starship fields
 // {
