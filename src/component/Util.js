@@ -46,7 +46,7 @@ async function getAllPages(URL) {
 }
 
 // get specific array of films and update the component films state by passing the setFilms function
-function getFilms(filmURLs, setFilms) {
+function getFilms(filmURLs, setFilmsFunc) {
     console.log("in getFilms()")
     
     if (filmURLs == null) {
@@ -56,7 +56,7 @@ function getFilms(filmURLs, setFilms) {
     else {
         // console.log(filmURLs)
         bulkGet(filmURLs).then((filmResponses) => {
-            setFilms(filmResponses.map((response) => {
+            setFilmsFunc(filmResponses.map((response) => {
                 const filmData = response.data;
                 return ({
                     id:             response.id,
@@ -72,7 +72,7 @@ function getFilms(filmURLs, setFilms) {
 }
 
 // get specific array of characters and update the component characters state by passing the setCharacters function
-function getCharacters(characterURLs, setCharacters) {
+function getCharacters(characterURLs, setCharactersFunc) {
     console.log("in getCharacters()")
     
     if (characterURLs == null) {
@@ -82,7 +82,7 @@ function getCharacters(characterURLs, setCharacters) {
     else {
         // console.log(characterURLs)
         bulkGet(characterURLs).then((characterResponses) => {
-            setCharacters(characterResponses.map((response) => {
+            setCharactersFunc(characterResponses.map((response) => {
                 const characterData = response.data;
                 return ({
                     id:         response.id,
@@ -101,7 +101,7 @@ function getCharacters(characterURLs, setCharacters) {
 }
 
 // get specific array of planets and update the component planets state by passing the setPlanets function
-function getPlanets(planetURLs, setPlanets) {
+function getPlanets(planetURLs, setPlanetsFunc) {
     console.log("in getPlanets()")
     
     if (planetURLs == null) {
@@ -111,7 +111,7 @@ function getPlanets(planetURLs, setPlanets) {
     else {
         // console.log(planetURLs)
         bulkGet(planetURLs).then((planetResponses) => {
-            setPlanets(planetResponses.map((response) => {
+            setPlanetsFunc(planetResponses.map((response) => {
                 const planetData = response.data;
                 return ({
                     id:                 response.id,
@@ -131,7 +131,7 @@ function getPlanets(planetURLs, setPlanets) {
 }
 
 // get specific array of species and update the component species state by passing the setSpecies function
-function getSpecies(speciesURLs, setSpecies) {
+function getSpecies(speciesURLs, setSpeciesFunc) {
     console.log("in getSpecies()")
     
     if (speciesURLs == null) {
@@ -141,7 +141,7 @@ function getSpecies(speciesURLs, setSpecies) {
     else {
         // console.log(speciesURLs)
         bulkGet(speciesURLs).then((speciesResponses) => {
-            setSpecies(speciesResponses.map((response) => {
+            setSpeciesFunc(speciesResponses.map((response) => {
                 const speciesData = response.data;
                 return ({
                     id:                 response.id,
@@ -161,8 +161,8 @@ function getSpecies(speciesURLs, setSpecies) {
 }
 
 // get specific array of starships and update the component starships state by passing the setStarships function
-function getStarships(starshipURLs, setStarships) {
-    console.log("in get starships")
+function getStarships(starshipURLs, setStarshipsFunc) {
+    console.log("in getStarships()")
     
     if (starshipURLs == null) {
         // nothing
@@ -171,7 +171,7 @@ function getStarships(starshipURLs, setStarships) {
     else {
         // console.log(starshipURLs)
         bulkGet(starshipURLs).then((starshipResponses) => {
-            setStarships(starshipResponses.map((response) => {
+            setStarshipsFunc(starshipResponses.map((response) => {
                 const starshipData = response.data;
                 return ({
                     id:                     response.id,
@@ -195,8 +195,8 @@ function getStarships(starshipURLs, setStarships) {
 }
 
 // get specific array of vehicles and update the component vehicles state by passing the setVehicles function
-function getVehicles(vechicleURLs, setVehicles) {
-    console.log("in get vehicles")
+function getVehicles(vechicleURLs, setVehiclesFunc) {
+    console.log("in getVehicles()")
     
     if (vechicleURLs == null) {
         // nothing
@@ -205,7 +205,7 @@ function getVehicles(vechicleURLs, setVehicles) {
     else {
         // console.log(vehicleURLs)
         bulkGet(vechicleURLs).then((vehicleResponses) => {
-            setVehicles(vehicleResponses.map((response) => {
+            setVehiclesFunc(vehicleResponses.map((response) => {
                 const vehicleData = response.data;
                 return ({
                     id:                     response.id,

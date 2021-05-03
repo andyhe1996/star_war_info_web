@@ -20,6 +20,8 @@ function Species({speciesData=[]}) {
             <h4>Species</h4>
             <Accordion defaultActiveKey="0">
                 {speciesData && speciesData.map((singleSpecies, index) => {
+                    const singleSpeciesID = index + 1;
+                    const singleSpeciesLink = "/species/" + singleSpeciesID;
                     return (
                         <Card key={index} >
                             <Card.Header className="bg-secondary text-white">
@@ -40,6 +42,7 @@ function Species({speciesData=[]}) {
                                         <b>Eye Colors: </b>{singleSpecies.eye_colors}<br/>
                                         <b>Language: </b>{singleSpecies.language}<br/>
                                     </Card.Text>
+                                    <Card.Link href={singleSpeciesLink}>For more Info</Card.Link>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

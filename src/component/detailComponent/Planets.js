@@ -20,6 +20,8 @@ function Planets({planetsData=[]}) {
             <h4>Planets</h4>
             <Accordion defaultActiveKey="0">
                 {planetsData && planetsData.map((planet, index) => {
+                    const planetID = index + 1;
+                    const planetLink = "/planets/" + planetID;
                     return (
                         <Card key={index} >
                             <Card.Header className="bg-secondary text-white">
@@ -40,6 +42,7 @@ function Planets({planetsData=[]}) {
                                         <b>Terrain: </b>{planet.terrain}<br/>
                                         <b>Surface Water: </b>{planet.surface_water}<br/>
                                     </Card.Text>
+                                    <Card.Link href={planetLink}>For more Info</Card.Link>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>

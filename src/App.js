@@ -9,6 +9,10 @@ import PlanetsPage from './component/PlanetsPage';
 import SpeciesPage from './component/SpeciesPage';
 import StarshipsPage from './component/StarshipsPage';
 import VehiclesPage from './component/VehiclesPage';
+import SinglePlanetPage from './component/SinglePlanetPage';
+import SingleSpeciesPage from './component/SingleSpeciesPage';
+import SingleStarshipPage from './component/SingleStarshipPage';
+import SingleVehiclePage from './component/SingleVehiclePage';
 
 
 function App() {
@@ -37,16 +41,16 @@ function App() {
             <SingleCharacterPage />
           </Route>
           <Route path="/planets/:id">
-            <SingleFilmPage />
+            <SinglePlanetPage />
           </Route>
           <Route path="/species/:id">
-            <SingleFilmPage />
+            <SingleSpeciesPage />
           </Route>
           <Route path="/starships/:id">
-            <SingleFilmPage />
+            <SingleStarshipPage />
           </Route>
           <Route path="/vehicles/:id">
-            <SingleFilmPage />
+            <SingleVehiclePage />
           </Route>
           <Route path="/characters">
             <CharactersPage />

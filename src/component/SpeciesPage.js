@@ -8,10 +8,10 @@ function SpeciesPage() {
     const URL = 'https://swapi.dev/api/'
 
     useEffect(() => {
-        getSpecies();
+        getAllSpecies();
     }, []);
 
-    async function getSpecies() {
+    async function getAllSpecies() {
         const allSpecies = URL + "species/";
         try {
             const results = await getAllPages(allSpecies);
@@ -49,7 +49,7 @@ function SpeciesPage() {
                         <Jumbotron>
                             <Row>
                                 <Col xs={8}>
-                                    <div key={index} className="singleSpecies">
+                                    <div key={index} className="singlespecies">
                                         <h2>{singleSpecies.name}</h2>
                                         <b>Classification: </b>{singleSpecies.classification}<br/>
                                         <b>Designation: </b>{singleSpecies.designation}<br/>
