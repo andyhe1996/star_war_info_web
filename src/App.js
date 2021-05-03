@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {BrowserRouter as Router, Switch, Route, Link, useParams} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import {Navbar, Nav} from "react-bootstrap";
 import CharactersPage from './component/CharactersPage';
 import MainPage from './component/MainPage';

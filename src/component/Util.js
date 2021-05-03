@@ -28,7 +28,24 @@ function bulkGet(URLs) {
     });
 }
 
-// get all films and update the component films state by passing the setFilms function
+// get all the next pages until next is null
+// Aussme reponse.data have a field results and is a array
+async function getAllPages(URL) {
+    let response = await axios.get(URL);
+    let results = response.data["results"];
+    console.log(response);
+    // keep grab next page if exist
+    while (response.data["next"]) {
+        const nextPage = response.data["next"];
+        response = await axios.get(nextPage);
+        results = results.concat(response.data["results"]);
+        console.log(response);
+    }
+
+    return results;
+}
+
+// get specific array of films and update the component films state by passing the setFilms function
 function getFilms(filmURLs, setFilms) {
     console.log("in getFilms()")
     
@@ -54,7 +71,7 @@ function getFilms(filmURLs, setFilms) {
     }
 }
 
-// get all characters and update the component characters state by passing the setCharacters function
+// get specific array of characters and update the component characters state by passing the setCharacters function
 function getCharacters(characterURLs, setCharacters) {
     console.log("in getCharacters()")
     
@@ -83,7 +100,7 @@ function getCharacters(characterURLs, setCharacters) {
     }
 }
 
-// get all planets and update the component planets state by passing the setPlanets function
+// get specific array of planets and update the component planets state by passing the setPlanets function
 function getPlanets(planetURLs, setPlanets) {
     console.log("in getPlanets()")
     
@@ -113,7 +130,7 @@ function getPlanets(planetURLs, setPlanets) {
     }
 }
 
-// get all species and update the component species state by passing the setSpecies function
+// get specific array of species and update the component species state by passing the setSpecies function
 function getSpecies(speciesURLs, setSpecies) {
     console.log("in getSpecies()")
     
@@ -143,7 +160,7 @@ function getSpecies(speciesURLs, setSpecies) {
     }
 }
 
-// get all starships and update the component starships state by passing the setStarships function
+// get specific array of starships and update the component starships state by passing the setStarships function
 function getStarships(starshipURLs, setStarships) {
     console.log("in get starships")
     
@@ -177,7 +194,7 @@ function getStarships(starshipURLs, setStarships) {
     }
 }
 
-// get all vehicles and update the component vehicles state by passing the setVehicles function
+// get specific array of vehicles and update the component vehicles state by passing the setVehicles function
 function getVehicles(vechicleURLs, setVehicles) {
     console.log("in get vehicles")
     
@@ -209,4 +226,4 @@ function getVehicles(vechicleURLs, setVehicles) {
     }
 }
 
-export {bulkGet, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles}
+export {bulkGet, getAllPages, getFilms, getCharacters, getPlanets, getSpecies, getStarships, getVehicles}

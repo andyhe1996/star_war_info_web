@@ -5,7 +5,7 @@ import Starships from './detailComponent/Starships';
 import Vehicles from './detailComponent/Vehicles';
 import Planets from './detailComponent/Planets';
 import Species from './detailComponent/Species';
-import {getFilms, getPlanets, getSpecies, getStarships, getVehicles} from './Util'
+import {getFilms, getPlanets, getSpecies, getStarships, getVehicles} from './Util';
 import axios from 'axios';
 import Films from './detailComponent/Films';
 

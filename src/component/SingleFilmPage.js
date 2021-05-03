@@ -6,7 +6,7 @@ import Starships from './detailComponent/Starships';
 import Vehicles from './detailComponent/Vehicles';
 import Planets from './detailComponent/Planets';
 import Species from './detailComponent/Species';
-import {getCharacters, getPlanets, getSpecies, getStarships, getVehicles} from './Util'
+import {getCharacters, getPlanets, getSpecies, getStarships, getVehicles} from './Util';
 import axios from 'axios';
 
 function SingleFilmPage() {

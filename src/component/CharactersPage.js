@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
+import {getAllPages} from './Util';
 
 
 function CharactersPage() {
@@ -14,16 +14,7 @@ function CharactersPage() {
     async function getCharacters() {
         const allCharacters = URL + "people/";
         try {
-            let response = await axios.get(allCharacters);
-            let results = response.data["results"];
-            console.log(response);
-            // keep grab next page if exist
-            while (response.data["next"]) {
-                const nextPage = response.data["next"];
-                response = await axios.get(nextPage);
-                results = results.concat(response.data["results"]);
-                console.log(response);
-            }
+            const results = getAllPages(allCharacters);
             setCharacters(results.map(result => {
                 const character = {
                     name: result.name,

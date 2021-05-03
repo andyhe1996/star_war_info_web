@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import axios from 'axios';
+import {getAllPages} from './Util';
 
 function MainPage() {
     const [films, setFilms] = useState([]);
@@ -13,16 +13,7 @@ function MainPage() {
     async function getFilms() {
         const allFilms = baseURL + "films/";
         try {
-            let response = await axios.get(allFilms);
-            let results = response.data["results"];
-            console.log(response);
-            // keep grab next page if exist
-            while (response.data["next"]) {
-                const nextPage = response.data["next"];
-                response = await axios.get(nextPage);
-                results = results.concat(response.data["results"]);
-                console.log(response);
-            }
+            const results = await getAllPages(allFilms);
             setFilms(results.map(result => {
                 const film = {
                     title: result.title,
