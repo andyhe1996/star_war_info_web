@@ -24,8 +24,15 @@ function SingleSpeciesPage() {
             const response = await axios.get(thisSpeciesURL);
             const result = response.data;
             console.log(response);
-            const planetResponse = await axios.get(result.homeworld);
-            const planetResult = planetResponse.data;
+            let planetResult = {};
+            if (result.homeworld){
+                const planetResponse = await axios.get(result.homeworld);
+                planetResult = planetResponse.data;
+            } else {
+                planetResult = {
+                    name:   null,
+                };
+            }
 
             // construct species
             const thisSpecies = {

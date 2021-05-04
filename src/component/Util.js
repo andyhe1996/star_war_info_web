@@ -228,6 +228,9 @@ function getVehicles(vechicleURLs, setVehiclesFunc) {
 
 // get the ID from URL
 function getIDFromURL(URL) {
+    if (URL == null || URL === "") {
+        return null;
+    }
     const urlElement = URL.split("/");
     // the id is the sencond last or the url
     return urlElement[urlElement.length - 2];
