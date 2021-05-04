@@ -3,16 +3,14 @@ import {Container, Row, Col} from 'react-bootstrap';
 import {useParams} from "react-router-dom";
 import Starships from './detailComponent/Starships';
 import Vehicles from './detailComponent/Vehicles';
-import Planets from './detailComponent/Planets';
 import Species from './detailComponent/Species';
-import {getFilms, getPlanets, getSpecies, getStarships, getVehicles} from './Util';
+import {getFilms, getIDFromURL, getSpecies, getStarships, getVehicles} from './Util';
 import axios from 'axios';
 import Films from './detailComponent/Films';
 
 function SingleCharacterPage() {
     const [character, setCharacter] = useState({});
     const [films, setFilms] = useState([]);
-    const [planets, setPlanets] = useState([]);
     const [species, setSpecies] = useState([]);
     const [starships, setStarships] = useState([]);
     const [vehicles, setVehicles] = useState([]);
@@ -30,6 +28,8 @@ function SingleCharacterPage() {
             const response = await axios.get(thisCharacterURL);
             const result = response.data;
             console.log(response);
+            const planetResponse = await axios.get(result.homeworld);
+            const planetResult = planetResponse.data;
             const thisCharacter = {
                 name:               result.name,
                 gender:             result.gender,
@@ -39,9 +39,10 @@ function SingleCharacterPage() {
                 skin_color:         result.skin_color,
                 hair_color:         result.hair_color,
                 eye_color:          result.eye_color,
+                home_planet:        planetResult.name,
+                planet_id:          getIDFromURL(planetResult.url),
                 detailURLs: {
                     filmURLs:       result.films,
-                    planetURLs:     [result.homeworld],
                     speciesURLs:    result.species,
                     starshipURLs:   result.starships,
                     vehicleURLs:    result.vehicles,
@@ -51,7 +52,6 @@ function SingleCharacterPage() {
 
             // grab other details
             getFilms(thisCharacter.detailURLs.filmURLs, setFilms);
-            getPlanets(thisCharacter.detailURLs.planetURLs, setPlanets);
             getSpecies(thisCharacter.detailURLs.speciesURLs, setSpecies);
             getStarships(thisCharacter.detailURLs.starshipURLs, setStarships);
             getVehicles(thisCharacter.detailURLs.vehicleURLs, setVehicles);
@@ -74,6 +74,7 @@ function SingleCharacterPage() {
                             <b>Skin Color: </b>{character.skin_color}<br/>
                             <b>Hair Color: </b>{character.hair_color}<br/>
                             <b>Eye Color: </b>{character.eye_color}<br/>
+                            <b>Home Planet: </b><a href={"/planets/" + character.planet_id}>{character.home_planet}</a><br/>
                         </div>
                     </Col>
                     <Col>
@@ -84,19 +85,13 @@ function SingleCharacterPage() {
                 <Films filmsData={films}/>
                 <hr/>
                 <Row>
-                    <Col xs={6}>
-                        <Planets planetsData={planets}/>
-                    </Col>
-                    <Col xs={6}>
+                    <Col xs={4}>
                         <Species speciesData={species}/>
                     </Col>
-                </Row>
-                <hr/>
-                <Row>
-                    <Col xs={6}>
+                    <Col xs={4}>
                         <Starships starshipsData={starships}/>
                     </Col>
-                    <Col xs={6}>
+                    <Col xs={4}>
                         <Vehicles vehiclesData={vehicles}/>
                     </Col>
                 </Row>

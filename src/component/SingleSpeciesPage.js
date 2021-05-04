@@ -2,14 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import {useParams} from "react-router-dom";
 import Characters from './detailComponent/Characters';
-import {getCharacters, getFilms, getPlanets} from './Util';
+import {getCharacters, getFilms, getIDFromURL} from './Util';
 import axios from 'axios';
 import Films from './detailComponent/Films';
 
 function SingleSpeciesPage() {
     const [singleSpecies, setSingleSpecies] = useState({});
     const [characters, setCharacters] = useState([]);
-    const [planets, setPlanets] = useState([]);
     const [films, setFilms] = useState([]);
 
     const baseURL = 'https://swapi.dev/api/';
@@ -25,6 +24,10 @@ function SingleSpeciesPage() {
             const response = await axios.get(thisSpeciesURL);
             const result = response.data;
             console.log(response);
+            const planetResponse = await axios.get(result.homeworld);
+            const planetResult = planetResponse.data;
+
+            // construct species
             const thisSpecies = {
                 name:               result.name,
                 classification:     result.classification,
@@ -34,11 +37,12 @@ function SingleSpeciesPage() {
                 skin_colors:        result.skin_colors,
                 hair_colors:        result.hair_colors,
                 eye_colors:         result.eye_colors,
-                language:           result.language,          
+                language:           result.language,
+                home_planet:        planetResult.name,
+                planet_id:          getIDFromURL(planetResult.url),
                 detailURLs: {
                     filmURLs:       result.films,
                     characterURLs:  result.people,
-                    planetURLs:     [result.homeworld],
                 },
             }
             setSingleSpecies(thisSpecies);
@@ -46,7 +50,6 @@ function SingleSpeciesPage() {
             // grab other details
             getFilms(thisSpecies.detailURLs.filmURLs, setFilms)
             getCharacters(thisSpecies.detailURLs.characterURLs, setCharacters);
-            getPlanets(thisSpecies.detailURLs.planetURLs, setPlanets);
         } catch(error) {
             console.log(error);
         }
@@ -67,7 +70,7 @@ function SingleSpeciesPage() {
                             <b>Hair Colors: </b>{singleSpecies.hair_colors}<br/>
                             <b>Eye Colors: </b>{singleSpecies.eye_colors}<br/>
                             <b>Language: </b>{singleSpecies.language}<br/>
-                            <b>Home Planet:</b><br/>
+                            <b>Home Planet: </b><a href={"/planets/" + singleSpecies.planet_id}>{singleSpecies.home_planet}</a><br/>
                         </div>
                     </Col>
                     <Col>
