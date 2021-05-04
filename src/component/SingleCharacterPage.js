@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Image} from 'react-bootstrap';
 import {useParams} from "react-router-dom";
 import Starships from './detailComponent/Starships';
 import Vehicles from './detailComponent/Vehicles';
@@ -14,12 +14,15 @@ function SingleCharacterPage() {
     const [species, setSpecies] = useState([]);
     const [starships, setStarships] = useState([]);
     const [vehicles, setVehicles] = useState([]);
+    const [imageSrc, setImageSrc] = useState("");
 
     const baseURL = 'https://swapi.dev/api/';
+    const imageBaseURL = 'https://akabab.github.io/starwars-api/api/id/';
     let { id } = useParams();
 
     useEffect(() => {
         getCharacterById();
+        getImageSrc();
     }, []);
 
     async function getCharacterById() {
@@ -68,6 +71,19 @@ function SingleCharacterPage() {
         }
     }
 
+    async function getImageSrc() {
+        const characterImageURL = imageBaseURL + "/" + id + ".json";
+        try {
+            const response = await axios.get(characterImageURL);
+            const result = response.data;
+            if (result && result["image"]) {
+                setImageSrc(result["image"]);
+            }
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="characterpage">
             <Container className="p-3 my-3 bg-dark text-white">
@@ -86,7 +102,7 @@ function SingleCharacterPage() {
                         </div>
                     </Col>
                     <Col>
-                        <p>leave space here for image</p>
+                        <Image src={imageSrc} fluid />
                     </Col>
                 </Row>
                 <hr/>

@@ -48,4 +48,5 @@ Refactor some of the code so that the project doesn't need that many pages.
 Add tests and unit tests.
 Display the details of each resource in a better way.
 Reimplement the set state logic so it doesn't violate the strict mode react.
+Add image to all resources.
 

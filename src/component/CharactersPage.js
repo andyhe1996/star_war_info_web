@@ -1,21 +1,22 @@
 import React, {useState, useEffect} from 'react';
-import {Container, Jumbotron, Row, Col, Button} from 'react-bootstrap';
-import {getAllPages, getIDFromURL} from './Util';
+import {Container, Jumbotron, Row, Col, Button, Image} from 'react-bootstrap';
+import {bulkGet, getAllPages, getIDFromURL} from './Util';
 
 
 function CharactersPage() {
     const [characters, setCharacters] = useState([]);
     const URL = 'https://swapi.dev/api/';
+    const imageBaseURL = 'https://akabab.github.io/starwars-api/api/id/';
 
     useEffect(() => {
         getCharacters();
     }, []);
 
     async function getCharacters() {
-        const allCharacters = URL + "people/";
+        const allCharactersURL = URL + "people/";
         try {
-            const results = await getAllPages(allCharacters);
-            setCharacters(results.map(result => {
+            const results = await getAllPages(allCharactersURL);
+            const allCharacters = results.map(result => {
                 const character = {
                     id:                 getIDFromURL(result.url),
                     name:               result.name,
@@ -25,7 +26,8 @@ function CharactersPage() {
                     mass:               result.mass,
                     skin_color:         result.skin_color,
                     hair_color:         result.hair_color,
-                    eye_color:          result.eye_color,                    
+                    eye_color:          result.eye_color,
+                    image_src:          "",                       
                     detailURLs: {
                         filmURLs:       result.films,
                         planetURLs:     result.homeworld,
@@ -34,6 +36,17 @@ function CharactersPage() {
                         vehicleURLs:    result.vehicles,
                     },
                 }
+                return character;
+            })
+            // setCharacters(allCharacters);
+
+            // get the image Src
+            const allCharactersImageURL = allCharacters.map((character) => {
+                return imageBaseURL + character.id + ".json";
+            });
+            const responses = await bulkGet(allCharactersImageURL)
+            setCharacters(allCharacters.map((character, index) => {
+                character.image_src = responses[index].data["image"];
                 return character;
             }));
         } catch(error) {
@@ -61,7 +74,7 @@ function CharactersPage() {
                                     </div>
                                 </Col>
                                 <Col>
-                                    <p>leave space here for image</p>
+                                    <Image src={character.image_src} fluid />
                                 </Col>
                             </Row>
                             <Button variant="secondary" size="lg" href={characterLink}>More Details</Button>
